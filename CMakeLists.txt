@@ -45,6 +45,14 @@ target_link_libraries(tests GTest::main source)
 
 enable_testing()
 add_test(NAME unit_tests COMMAND tests)
+install(TARGETS Json
+    EXPORT Json-config
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+)
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
+install(EXPORT Json-config DESTINATION cmake)
 
 if(BUILD_COVERAGE)
   set(ENABLE_COVERAGE ON CACHE BOOL "Enable coverage build." FORCE)
